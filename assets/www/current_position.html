@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>PhoneGap</title>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript">
+	/** Called when phonegap javascript is loaded */
+	function onDeviceReady() {
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	}
+	function onSuccess(position) {
+		document.getElementById('latitude').innerHTML = position.coords.latitude;
+		document.getElementById('longitude').innerHTML = position.coords.longitude;
+		document.getElementById('altitude').innerHTML = position.coords.altitude;
+		document.getElementById('timestamp').innerHTML = new Date(
+				position.timestamp);
+	}
+	function onError(error) {
+		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+	}
+	/** Called when browser load this page*/
+	function init() {
+		document.addEventListener("deviceready", onDeviceReady, false);
+	}
+</script>
+</head>
+<body onLoad="init()">
+	<h1>GeoLocation</h1>
+	<table border="1">
+		<tr>
+			<td>Latitude</td>
+			<td id="latitude"></td>
+		<tr>
+		<tr>
+			<td>Longitude</td>
+			<td id="longitude"></td>
+		<tr>
+		<tr>
+			<td>Altitude</td>
+			<td id="altitude"></td>
+		<tr>
+		<tr>
+			<td>TimeStamp</td>
+			<td id="timestamp"></td>
+		<tr>
+	</table>
+
+</body>
+</html>
